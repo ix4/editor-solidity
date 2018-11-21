@@ -47,7 +47,8 @@ contract Greeter is Mortal {
   }
   var compiler
   solcjs.version2url((err, select) => {
-    var latest = select.releases[0]
+    var latest = select.releases[1]
+    // console.log('select.releases', latest);
     select(latest, (err, url) => {
       solcjs(url, (err, solc) => {
         compiler = solc
@@ -60,7 +61,7 @@ contract Greeter is Mortal {
       var sourcecode = ed.el.api.getValue()
       var id = setTimeout(() => {
         var metadata = compiler.compile(sourcecode)
-        // console.log(metadata)
+        console.log(metadata)
         var el = smartcontract({ metadata })
         scapp.el.innerHTML = ''
         scapp.el.appendChild(el)
